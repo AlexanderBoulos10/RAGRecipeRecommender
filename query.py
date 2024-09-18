@@ -13,7 +13,7 @@ Answer the question based only on the following context:
 
 ---
 
-Choose an appropriate recipe based on the above context when you are told {query} and output it as JSON. An example output is shown below: 
+Choose an appropriate recipe based on the above context when you are told {query} and only output the resulting JSON and nothing else. An example output is shown below: 
 {{
   "title": "Italian Party Sub",
   "ingredients": [
