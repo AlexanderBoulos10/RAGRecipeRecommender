@@ -40,15 +40,16 @@ def prepare_recipe_text(recipe):
     combined_text = f"Recipe title: {title}\nIngredients: {ingredients}\nInstructions: {instructions}"
     return combined_text
 
-recipes_to_add = list(data.items())[1982:]
-count = 1982    #Stopped at 12182!!
-total = len(data)
-for recipe_id, recipe_data in data.items():
-    combined_text = prepare_recipe_text(recipe_data)
-    metadata = prepare_metadata(recipe_data)
-    db = Chroma(persist_directory= 'chroma', embedding_function=get_embedding_function())
-    db.add_texts(texts=[combined_text], metadatas=[metadata], ids=[recipe_id])
-    count += 1
-    print(f"Added recipe to the database. {count}/{total}")
+# recipes_to_add = list(data.items())[1982:]
+# count = 1982    #Stopped at 12182!!
+# total = len(data)
+# for recipe_id, recipe_data in data.items():
+#     combined_text = prepare_recipe_text(recipe_data)
+#     metadata = prepare_metadata(recipe_data)
+#     db = Chroma(persist_directory= 'chroma', embedding_function=get_embedding_function())
+#     db.add_texts(texts=[combined_text], metadatas=[metadata], ids=[recipe_id])
+#     count += 1
+#     print(f"Added recipe to the database. {count}/{total}")
 
+#Not sure why the above code is running when I execute query.py so I will comment it out for now
 
