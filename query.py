@@ -57,7 +57,7 @@ def query_rag(query_text: str):
     response = client.chat.completions.create(
           model='gpt-4o-mini',
           messages=[
-              {'role': 'system', 'content': f'Answer the question based only on the following context: {context_text} and only output one recipe as as a JSON object.'},
+              {'role': 'system', 'content': f'Answer the question based only on the following context: {context_text} and only output one recipe as as a JSON object.(ignore the 3 dashes at the start and end)'},
               {'role': 'user', 'content': 'Sub Sandwich'},
               {'role': 'assistant', 'content': '''
                       {"title": "Italian Party Sub",
@@ -86,7 +86,7 @@ def query_rag(query_text: str):
           ],
           max_tokens=500,
       )
-    print(response.choices[0].message.content)
+    return response.choices[0].message.content
     
 if __name__ == "__main__":
     main()
