@@ -4,22 +4,25 @@ import "../styles/QueryPage.css";
 
 const QueryPage = () => {
 	const [query, setQuery] = useState("");
+	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-		// Send query to backend
-		const response = await fetch("http://localhost:8000/query", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ query_text: query }),
-		});
-		const data = await response.json();
-
-		// Navigate to ResultPage with the recipe data
-		navigate("/result", { state: { recipe: data } });
+		setIsLoading(true); // Set loading to true when the user clicks submit
+		try {
+			const response = await fetch("http://localhost:8000/query", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ query_text: query }),
+			});
+			const data = await response.json();
+			navigate("/result", { state: { recipe: data } });
+		} catch (error) {
+			console.error("Error fetching recipe:", error);
+		} finally {
+			setIsLoading(false); // Set loading to false once the request is done
+		}
 	};
 
 	return (
@@ -35,10 +38,15 @@ const QueryPage = () => {
 					onChange={(e) => setQuery(e.target.value)}
 					required
 				/>
-				<button className="submit-button" type="submit">
-					Get Recipe
+				<button
+					className="submit-button"
+					type="submit"
+					disabled={isLoading}>
+					{isLoading ? "Loading..." : "Get Recipe"}
 				</button>
 			</form>
+			{isLoading && <div className="loader"></div>}{" "}
+			{/* Show loader if isLoading is true */}
 		</div>
 	);
 };
