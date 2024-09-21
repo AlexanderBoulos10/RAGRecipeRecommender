@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import "../styles/ResultPage.css";
 
 const ResultPage = () => {
 	const location = useLocation();
@@ -11,21 +12,30 @@ const ResultPage = () => {
 	}
 
 	return (
-		<div>
-			<h1>{recipe.title}</h1>
-			<h2>Ingredients</h2>
-			<ul>
+		<div className="result-page">
+			<h1 className="recipe-title">{recipe.title}</h1>
+
+			<h2 className="section-title">Ingredients</h2>
+			<ul className="ingredients-list">
 				{recipe.ingredients.map((ingredient, index) => (
-					<li key={index}>{ingredient}</li>
+					<li key={index} className="ingredient-item">
+						{ingredient}
+					</li>
 				))}
 			</ul>
-			<h2>Instructions</h2>
-			<ol>
+
+			<h2 className="section-title">Instructions</h2>
+			<ol className="instructions-list">
 				{recipe.instructions.map((instruction, index) => (
-					<li key={index}>{instruction}</li>
+					<li key={index} className="instruction-item">
+						{instruction}
+					</li>
 				))}
 			</ol>
-			<button onClick={() => navigate(-1)}>Go Back</button>
+
+			<button className="back-button" onClick={() => navigate(-1)}>
+				Back to Search
+			</button>
 		</div>
 	);
 };

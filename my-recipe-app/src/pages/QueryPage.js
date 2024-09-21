@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../styles/QueryPage.css";
 
 const QueryPage = () => {
 	const [query, setQuery] = useState("");
@@ -22,19 +23,21 @@ const QueryPage = () => {
 	};
 
 	return (
-		<div>
-			<h1>Recipe Recommendation System</h1>
-			<form onSubmit={handleSubmit}>
-				<label>
-					Enter what kind of recipe you want to make:
-					<input
-						type="text"
-						value={query}
-						onChange={(e) => setQuery(e.target.value)}
-						required
-					/>
-				</label>
-				<button type="submit">Submit</button>
+		<div className="query-page">
+			<h1 className="title">Recipe Recommendation System</h1>
+			<h2 className="subtitle">What recipe are you looking for?</h2>
+			<form onSubmit={handleSubmit} className="query-form">
+				<input
+					className="query-input"
+					type="text"
+					placeholder="Enter your culinary craving..."
+					value={query}
+					onChange={(e) => setQuery(e.target.value)}
+					required
+				/>
+				<button className="submit-button" type="submit">
+					Get Recipe
+				</button>
 			</form>
 		</div>
 	);
