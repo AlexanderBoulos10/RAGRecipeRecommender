@@ -16,12 +16,20 @@ app.add_middleware(
 class QueryRequestString(BaseModel):
     query_text: str
 
-@app.post("/query")
+@app.post("/recipeQuery")
 def get_recipe(request:QueryRequestString):
     query_text = request.query_text
     if not query_text:
         return {"error": "No query provided"}
     string_response = query_rag(query_text)
     json_response = json.loads(string_response)
-    print((json_response['title']))
+    return json_response
+
+@app.post("/ingredientQuery")
+def get_recipe(request:QueryRequestString):
+    query_text = request.query_text
+    if not query_text:
+        return {"error": "No query provided"}
+    string_response = query_rag(query_text, False)
+    json_response = json.loads(string_response)
     return json_response
