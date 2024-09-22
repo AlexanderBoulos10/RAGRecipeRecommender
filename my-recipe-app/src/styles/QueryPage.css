@@ -1,3 +1,4 @@
+/* src/pages/QueryPage.css */
 body {
     margin: 0;
     font-family: 'Montserrat', sans-serif;
@@ -26,6 +27,18 @@ body {
     margin-bottom: 20px;
   }
   
+  .toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .toggle label {
+    margin-right: 20px;
+    font-size: 16px;
+    color: #333;
+  }
+  
   .query-form {
     display: flex;
     flex-direction: column;
@@ -34,7 +47,8 @@ body {
     max-width: 400px;
   }
   
-  .query-input {
+  .query-input,
+  .ingredients-input {
     width: 100%;
     padding: 12px;
     font-size: 16px;
@@ -43,6 +57,10 @@ body {
     border-radius: 5px;
     background-color: white;
     color: #333;
+  }
+  
+  .ingredients-input {
+    height: 100px;
   }
   
   .submit-button {
@@ -59,10 +77,9 @@ body {
   .submit-button:hover {
     background-color: #45a049;
   }
-
-
+  
   .submit-button:disabled {
-    background-color: #ccc;  /* Change button color when disabled */
+    background-color: #ccc;
     cursor: not-allowed;
   }
   
@@ -81,3 +98,4 @@ body {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+  
